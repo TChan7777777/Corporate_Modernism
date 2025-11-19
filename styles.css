@@ -1,6 +1,11 @@
 /* ====================================
     CORPORATE MODERNISM DESIGN SYSTEM
     ==================================== */
+
+html {
+    scroll-behavior: smooth;
+}
+
 /* ====================================
     NAVIGATION BAR
     ==================================== */
@@ -1386,19 +1391,60 @@
    ==================================== */
 
 .footer {
-    background-color: #1A1A1A;
+    background: linear-gradient(135deg, #1A1A1A 0%, #0F0F0F 100%);
     color: #BFBFBF;
-    padding: 60px 0 24px;
+    padding: 80px 0 32px;
     margin-top: 80px;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, #3B82F6 50%, transparent 100%);
 }
 
 .footer-container {
-    max-width: 900px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 24px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 60px;
+}
+
+.footer-section {
+    text-align: left;
+}
+
+.footer-section h4 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+}
+
+.footer-section h4::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: #3B82F6;
+    border-radius: 1px;
 }
 
 .featured-content {
@@ -1547,33 +1593,69 @@
 }
 
 .footer-section p {
-    font-size: 13px;
-    line-height: 1.6;
+    font-size: 14px;
+    line-height: 1.8;
     color: #BFBFBF;
+    margin: 0;
+    max-width: 300px;
 }
 
 .footer-section ul {
     list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .footer-section ul li {
-    margin-bottom: 8px;
+    margin-bottom: 12px;
+    position: relative;
+    transition: transform 0.2s ease;
+}
+
+.footer-section ul li:hover {
+    transform: translateX(4px);
 }
 
 .footer-section a {
-    font-size: 13px;
+    font-size: 14px;
     color: #BFBFBF;
-    transition: color 0.3s ease;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+}
+
+.footer-section a::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #3B82F6;
+    transition: width 0.3s ease;
 }
 
 .footer-section a:hover {
-    color: #3B82F6;
+    color: #FFFFFF;
+}
+
+.footer-section a:hover::before {
+    width: 100%;
 }
 
 .footer-bottom {
     text-align: center;
-    font-size: 12px;
+    padding-top: 32px;
+    border-top: 1px solid #2A2A2A;
+    position: relative;
+}
+
+.footer-bottom p {
+    font-size: 13px;
     color: #757575;
+    margin: 0;
+    letter-spacing: 0.3px;
 }
 
 /* ====================================
@@ -1620,6 +1702,29 @@
     .cta-buttons .btn {
         width: 100%;
     }
+
+    .footer {
+        padding: 60px 0 24px;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        margin-bottom: 40px;
+    }
+    
+    .footer-section {
+        text-align: center;
+    }
+    
+    .footer-section h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .footer-section p {
+        max-width: none;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1658,6 +1763,19 @@
 
     .principle-number {
         font-size: 32px;
+    }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+    }
+    
+    .footer-section:first-child {
+        grid-column: 1 / -1;
+        text-align: center;
+        margin-bottom: 20px;
     }
 }
 
