@@ -7,18 +7,29 @@ html {
     font-family: sans-serif;
 }
 
+/* Unified container for consistent horizontal alignment across sections */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* Ensure consistent box sizing to prevent unexpected overflow/overlap */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 /* ====================================
     NAVIGATION BAR
     ==================================== */
 
 .navbar {
-    background-color: #FAFAFA;
+    background-color: rgba(250, 250, 250, 0.90); /* subtle translucency */
     border-bottom: 1px solid #E8E8E8;
     position: sticky;
     top: 0;
     z-index: 1000;
-    backdrop-filter: blur(10px);
-    background-color: rgba(250, 250, 250, 0.95);
+    backdrop-filter: blur(14px); /* slightly stronger blur for premium feel */
 }
 
 .nav-container {
@@ -92,9 +103,10 @@ html {
 .nav-link {
     font-size: 14px;
     font-weight: 500;
-    color: #757575;
-    transition: color 0.3s ease;
+    color: #424242;
+    transition: color 0.25s ease;
     position: relative;
+    padding: 10px 12px; /* more comfortable hit area */
 }
 
 .nav-link:hover,
@@ -102,14 +114,32 @@ html {
     color: #3B82F6;
 }
 
-.nav-link.active::after {
+/* Animated underline: grows from center on hover; persists on active */
+.nav-link::after {
     content: '';
     position: absolute;
-    bottom: -8px;
-    left: 0;
-    right: 0;
+    left: 50%;
+    bottom: -6px;
+    width: 0;
     height: 2px;
     background-color: #3B82F6;
+    transform: translateX(-50%);
+    transition: width 180ms ease;
+}
+
+.nav-link:hover::after {
+    width: 60%;
+}
+
+.nav-link.active::after {
+    width: 60%;
+}
+
+/* Accessible focus state aligned with brand accent */
+.nav-link:focus {
+    outline: 2px solid rgba(59, 130, 246, 0.6);
+    outline-offset: 4px;
+    border-radius: 6px;
 }
 
 .nav-toggle {
@@ -446,6 +476,13 @@ html {
 .design-elements {
     padding: 100px 0;
 }
+/* Center Key Takeaways header and grid to match site rhythm */
+.key-takeaways .section-header,
+.key-takeaways .takeaways-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
 
 .elements-grid {
     display: grid;
@@ -530,6 +567,27 @@ html {
     display: flex;
     gap: 12px;
     flex-wrap: wrap;
+}
+/* Make the two buttons in the Components card uniform and side by side */
+.components-preview .component-btn {
+    flex: 1 1 160px; /* equal width buttons, minimum 160px */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px; /* consistent height */
+}
+
+/* On narrow mobile screens, stack the buttons full width for readability */
+@media (max-width: 480px) {
+    .components-preview {
+        flex-wrap: nowrap;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .components-preview .component-btn {
+        width: 100%;
+        flex: 0 0 auto;
+    }
 }
 
 .imagery-preview {
@@ -636,6 +694,14 @@ html {
     padding: 100px 0;
 }
 
+/* Center the featured section content to match the site's container rhythm */
+.featured .section-header,
+.featured .featured-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
 .featured-grid {
     display: grid;
     /* use flexible columns that can shrink on desktop while keeping the 3-up layout
@@ -719,6 +785,13 @@ html {
     padding: 80px 0;
     background-color: white;
     text-align: center;
+}
+
+/* Ensure the bottom CTA aligns with the same page center as other sections */
+.cta-section .container {
+    max-width: 1100px; /* unify with other section containers for consistent alignment */
+    margin: 0 auto;
+    padding: 0 24px;
 }
 
 .cta-section h2 {
@@ -1086,6 +1159,8 @@ html {
     gap: 12px;
     align-items: center;
     margin-bottom: 12px;
+    justify-content: center; /* center the color swatches within the preview */
+    flex-wrap: wrap;         /* allow the 3 colors to wrap if space is tight */
 }
 
 .color-row:last-child {
@@ -1097,6 +1172,16 @@ html {
     height: 40px;
     border-radius: 4px;
     flex-shrink: 0;
+}
+
+/* Ensure the color system preview area keeps all three colors visible and centered */
+.system-card .color-system-preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px; /* enough room for rows of swatches and labels */
+    padding: 12px;
+    overflow: hidden; /* prevent accidental overflow while keeping content visible */
 }
 
 .color-label {
@@ -1258,12 +1343,43 @@ html {
 
 .practices-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    /* Enforce equal items per row for visual balance */
+    grid-template-columns: repeat(4, 1fr);
     gap: 32px;
+    align-items: stretch;
+}
+
+/* Medium screens: 2 per row */
+@media (max-width: 1024px) {
+    .practices-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile: 1 per row */
+@media (max-width: 600px) {
+    .practices-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .practice-item {
     text-align: center;
+    background: #FFFFFF;
+    border: 1px solid #E8E8E8;
+    border-radius: 10px;
+    padding: 24px 20px 28px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 220px; /* keep consistent card height for even rows */
+}
+
+.practice-item:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
 }
 
 .practice-icon {
@@ -1355,6 +1471,14 @@ html {
     background-color: white;
 }
 
+/* Center applications grid and header to align with other pages */
+.applications .section-header,
+.applications .applications-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
 .applications-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -1418,7 +1542,7 @@ html {
 }
 
 .footer-container {
-    max-width: 1200px;
+    max-width: 1100px; /* match global container width for alignment consistency */
     margin: 0 auto;
     padding: 0 24px;
 }
@@ -1488,6 +1612,12 @@ html {
 
 .case-study {
     margin-bottom: 56px;
+    background-color: #FFFFFF;
+    border: 1px solid #E8E8E8;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .case-study-header h3 {
@@ -1508,10 +1638,11 @@ html {
     display: grid;
     /* allow the main content to flex and the visual column to keep a sensible
        width; minmax keeps the left column shrinkable while preserving layout */
-    grid-template-columns: minmax(280px, 1fr) 280px;
+    grid-template-columns: minmax(280px, 1fr) 320px;
     gap: 32px;
     justify-content: center; /* center the whole two-column layout */
     align-items: start;
+    padding: 28px 28px 36px; /* padding inside card */
 }
 
 /* Force content to the left column and visuals to the right column regardless of DOM order */
@@ -1555,8 +1686,10 @@ html {
     width: 100%;
     max-width: 320px; /* preserve intended visual width on larger screens */
     height: auto; /* allow image to scale down fluidly */
-    border-radius: 6px;
+    border-radius: 8px;
     overflow: hidden;
+    border: 1px solid #E8E8E8;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 /* Make any img inside featured/case visuals responsive */
@@ -1591,11 +1724,15 @@ html {
 }
 
 .takeaway-card {
-    background: transparent;
-    padding: 12px 24px;
+    background: #FFFFFF;
+    padding: 24px 28px;
     max-width: 720px;
     margin: 0 auto;
     text-align: left; /* left-align copy for reading rhythm */
+    border: 1px solid #E8E8E8;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
 }
 
 .takeaway-card h3 {
@@ -1608,13 +1745,27 @@ html {
     color: #525252;
 }
 
+/* Hover elevation for takeaway cards to match site card interactions */
+.takeaway-card:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+    border-color: #E2E8F0; /* subtle brighten on hover */
+}
+
 @media (max-width: 480px) {
     /* Stack case study content and visuals only on narrow mobile screens */
     .case-study-grid {
         grid-template-columns: 1fr;
+        padding: 20px;
     }
     .case-study-grid > .case-study-content { grid-column: 1; grid-row: 1; }
     .case-study-grid > .case-study-visual  { grid-column: 1; grid-row: 2; }
+}
+
+/* Hover elevation for cards */
+.case-study:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
 }
 
 .footer-section p {
@@ -2183,12 +2334,11 @@ html {
    CENTERING & GRID OVERRIDES
    ==================================== */
 
-/* Ensure main container centers content and text */
+/* Ensure main container centers content consistently */
 .container {
-    max-width: 900px;
+    max-width: 1100px; /* unify with global container width */
     margin: 0 auto;
     padding: 0 24px;
-    text-align: left;
 }
 
 /* Center intro text block */
@@ -2209,9 +2359,10 @@ html {
     /* flexible 3-column layout: columns can shrink down while keeping the
        overall 3-up structure on desktop. Cards will remain centered. */
     grid-template-columns: repeat(3, minmax(220px, 340px));
-    gap: 32px;
+    gap: 40px; /* add a bit more space between cards to avoid visual crowding */
     justify-content: center; /* centers the whole grid inside the container */
     justify-items: center;    /* centers items inside each cell */
+    align-items: stretch;     /* make all cards in a row the same height */
     max-width: 1140px;       /* prevent grid from stretching too wide */
     margin: 0 auto;
 }
@@ -2223,18 +2374,45 @@ html {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start; /* align content to top so all cards start on same line */
     text-align: center;
+    overflow: hidden; /* prevent inner content from bleeding outside the card */
 }
 
 .system-card .imagery-preview,
 .system-card .grid-system-preview {
     width: 100%;
     margin-bottom: 16px;
+    max-height: 220px; /* keep content visible while preventing overflow */
+    overflow: hidden;
+}
+
+/* Center content inside the system previews so visuals and labels align nicely */
+.system-card .color-system-preview,
+.system-card .typography-system-preview,
+.system-card .grid-system-preview,
+.system-card .imagery-preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* unify preview heights so content below begins at the same vertical position
+       across cards, preventing a staggered look */
+    min-height: 200px;
+    max-height: 200px;
+}
+
+/* Keep descriptive text centered and constrained for uniform look */
+.system-card p {
+    text-align: center;
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 @media (max-width: 1024px) {
     .system-grid {
         grid-template-columns: repeat(2, minmax(200px, 340px));
+        gap: 36px; /* keep comfortable spacing at medium widths */
         justify-content: center;
     }
 }
@@ -2243,6 +2421,7 @@ html {
     .system-grid {
         grid-template-columns: 1fr;
         padding: 0 16px;
+        gap: 28px; /* slightly tighter but still clear spacing on mobile */
     }
 }
 
@@ -2256,7 +2435,7 @@ html {
 }
 
 .principles .container {
-    max-width: 1200px;
+    max-width: 1100px; /* align with global container */
     margin: 0 auto;
     padding: 0 24px;
     text-align: center;
@@ -2298,6 +2477,7 @@ html {
     height: 72px;
     border-radius: 12px;
     background-color: #F8FAFC;
+    align-self: center; /* center icon horizontally within the card */
 }
 
 .principle-card h3 {
