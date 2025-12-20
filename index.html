@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Corporate Modernism - Professional design philosophy combining minimalist modernism with corporate sophistication.">
     <title>Corporate Modernism - Design Philosophy & Professional Excellence</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <a class="skip-to-content" href="#main">Skip to main content</a>
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Primary">
         <div class="nav-container">
             <div class="nav-logo">
                 <span class="logo-icon">◆</span>
@@ -23,7 +25,7 @@
                 <li><a href="services.html" class="nav-link">Services</a></li>
                 <li><a href="blog.html" class="nav-link">Blog</a></li>
             </ul>
-            <button class="nav-toggle" id="navToggle">
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -31,12 +33,13 @@
         </div>
     </nav>
 
+    <main id="main">
     <section class="hero">
         <div class="hero-container">
             <div class="hero-content">
                 <h1 class="hero-title">Design for Trust & Clarity</h1>
                 <p class="hero-subtitle">Corporate Modernism combines minimalist principles with professional sophistication. Create interfaces that are purposeful, elegant, and intuitive.</p>
-                <div class="hero-buttons">
+                    <div class="hero-buttons">
                     <a href="about.html" class="btn btn-primary">Explore Philosophy</a>
                     <a href="#principles" class="btn btn-secondary">Learn More</a>
                 </div>
@@ -222,7 +225,7 @@
                         <div class="type-scale">
                             <div class="type-item" style="font-size: 32px; font-weight: 700;">Heading</div>
                             <div class="type-item" style="font-size: 16px; font-weight: 400;">Body Text</div>
-                            <div class="type-item" style="font-size: 12px; font-weight: 300; color: #757575;">Caption</div>
+                            <div class="type-item" style="font-size: 12px; font-weight: 400; color: #525252;">Caption</div>
                         </div>
                     </div>
                     <p>Inter or similar sans-serif. Multiple weights create hierarchy. Proper line-height (1.5-1.6) ensures readability on all devices.</p>
@@ -280,7 +283,7 @@
                 <div class="system-card">
                     <h3>Imagery & Icons</h3>
                     <div class="imagery-preview">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                             <circle cx="12" cy="12" r="10"></circle>
                             <path d="M12 6v6l4 2"></path>
                         </svg>
@@ -298,42 +301,42 @@
             <div class="practices-grid">
                 <div class="practice-item">
                     <div class="practice-icon">1</div>
-                    <h4>Start with the Grid</h4>
+                    <h3>Start with the Grid</h3>
                     <p>Establish a consistent grid system (12 or 16 columns) and base spacing unit (8px or 16px). This foundation ensures alignment and visual harmony across all breakpoints.</p>
                 </div>
                 <div class="practice-item">
                     <div class="practice-icon">2</div>
-                    <h4>Choose Your Palette</h4>
+                    <h3>Choose Your Palette</h3>
                     <p>Select a neutral foundation (whites, light grays, dark grays) and one accent color. Stick to your choices. Consistency builds brand recognition.</p>
                 </div>
                 <div class="practice-item">
                     <div class="practice-icon">3</div>
-                    <h4>Typography First</h4>
+                    <h3>Typography First</h3>
                     <p>Select quality sans-serif fonts and establish a typographic scale. Good typography is the foundation of professional design. Invest time in getting this right.</p>
                 </div>
                 <div class="practice-item">
                     <div class="practice-icon">4</div>
-                    <h4>Build Component Library</h4>
+                    <h3>Build Component Library</h3>
                     <p>Create reusable components (buttons, cards, forms, etc.). This ensures consistency, speeds up development, and makes maintenance easier.</p>
                 </div>
                 <div class="practice-item">
                     <div class="practice-icon">5</div>
-                    <h4>Embrace White Space</h4>
+                    <h3>Embrace White Space</h3>
                     <p>Don't fill every pixel. Use whitespace strategically to guide attention and reduce cognitive load. Breathing room is professional.</p>
                 </div>
                 <div class="practice-item">
                     <div class="practice-icon">6</div>
-                    <h4>Test for Accessibility</h4>
+                    <h3>Test for Accessibility</h3>
                     <p>Validate WCAG AA compliance. Test with screen readers. Ensure keyboard navigation works. Accessibility isn't optional—it's fundamental.</p>
                 </div>
                 <div class="practice-item">
                     <div class="practice-icon">7</div>
-                    <h4>Subtle Interactions</h4>
+                    <h3>Subtle Interactions</h3>
                     <p>Use smooth transitions (200-400ms). Provide clear feedback. Avoid distracting animations. Interactions should feel natural, not intrusive.</p>
                 </div>
                 <div class="practice-item">
                     <div class="practice-icon">8</div>
-                    <h4>Document Everything</h4>
+                    <h3>Document Everything</h3>
                     <p>Create design system documentation. Establish clear guidelines for spacing, colors, typography, and components. This enables consistency across teams.</p>
                 </div>
             </div>
@@ -641,6 +644,8 @@
             <a href="about.html" class="btn btn-primary btn-large">Learn More About Our Philosophy</a>
         </div>
     </section>
+
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
